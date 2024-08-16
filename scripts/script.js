@@ -34,7 +34,8 @@ document.addEventListener("DOMContentLoaded", () => {
 				const outputDiv = document.createElement('div');
 				outputDiv.classList.add('output');
 				outputDiv.innerHTML = `<span class="prompt"><span class="white">${inputText}: command not found</span></span>`;
-				this.parentNode.parentNode.append(outputDiv);
+				this.parentElement.parentElement.insertBefore(outputDiv, this);
+				console.log(this);
 				this.innerText = '';
 			}
 		}
