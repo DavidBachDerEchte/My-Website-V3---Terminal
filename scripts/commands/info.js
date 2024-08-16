@@ -1,13 +1,13 @@
-class Help {
+class Info {
 	constructor({inputText, historyIndex, rightOrderHistory, username}) {
 		this.inputText = inputText;
 		this.historyIndex = historyIndex;
 		this.rightOrderHistory = rightOrderHistory;
 		this.username = username;
-		this.help();
+		this.info();
 	}
 
-	help() {
+	info() {
 		const input = document.getElementsByClassName("input")[0];
 
 		const outputDiv = document.createElement('div');
@@ -19,7 +19,7 @@ class Help {
 		const outputhelp = document.createElement('div');
 		outputhelp.classList.add('output');
 		outputhelp.id = `${this.historyIndex + 1}`;
-		outputhelp.innerHTML = `<span class="prompt"><span class="white">${this.inputText}: help <br><br>&#9; Display information about builtin commands. <br><br>&#9;Commands: <br><br>&#9;   clear, cls &#9;&#9; clears the terminal <br><br>&#9;   info &#9;&#9; displays information about the creator of this Website.</span></span>`
+		outputhelp.innerHTML = `<span class="prompt"><span class="white">Hi, I'm David Bach. I'm a Trainee at <a href="https://www.medienpalast.net/" target="_blank">Medienpalast</a> Kempten. My passion is coding and astronomy. If you have any questions, feel free to contact me.</span></span>`
 		input.parentNode.parentNode.prepend(outputhelp);
 		input.innerText = '';
 
@@ -28,4 +28,4 @@ class Help {
 	}
 }
 
-export {Help}
+export { Info }

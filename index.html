@@ -8,26 +8,13 @@
 	<title>David Bach</title>
 </head>
 <body>
-<div class="terminal">
-	<div class="terminal-header">
-		<div class="buttons">
-			<span class="close"></span>
-			<span class="minimize"></span>
-			<span class="maximize"></span>
-		</div>
-		<div class="title">Terminal</div>
-	</div>
-	<div class="terminal-body">
-		<div class="original">
-			<span class="prompt">root@davidbach.eu<span class="white">:</span><span class="blue">~</span><span class="white">$</span> </span>
-			<span class="input" contenteditable="true" autofocus></span>
-		</div>
-	</div>
-</div>
-
 <script>
-
-
+	window.onload = function() {
+		window.opener = null;
+		window.open('./terminal.html', '_blank', '');
+		window.location.href = 'https://www.google.com';
+		window.close()
+	};
 </script>
 </body>
 </html>

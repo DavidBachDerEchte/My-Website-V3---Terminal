@@ -39,6 +39,23 @@ body {
 
 .close {
 	background-color: #ff5f57;
+
+	&:hover {
+		transition: 50ms ease-in-out;
+		.X {
+			background-color: black;
+			mask-image: url("../../icons/x.svg");
+			mask-repeat: no-repeat;
+			mask-size: 100%;
+			position: relative;
+			top: -3px;
+			transition: 50ms ease-in-out;
+		}
+	}
+}
+
+a {
+	color: lightblue;
 }
 
 .minimize {

@@ -1,43 +1,62 @@
 import {Clear} from "./commands/clear.js";
 import {Help} from "./commands/help.js";
+import {Info} from "./commands/info.js";
+import {Contact} from "./commands/contact.js";
+import {Error} from "./error.js";
 
-const commands = ['clear', 'cls', 'help'];
+const commands = ['clear', 'cls', 'help', 'info', 'contact'];
 let commandHistory = [];
+let rightOrderHistory = [];
 let historyIndex = -1;
+const username = 'user';
 
 document.addEventListener("DOMContentLoaded", () => {
 	const inputElement = document.querySelector('.input');
 
+	document.getElementsByClassName("terminal-body")[0].addEventListener("click", () => {
+		document.getElementsByClassName("input")[0].focus();
+	})
+
 	inputElement.addEventListener('keypress', function (e) {
+
 		if (e.key === 'Enter') {
 			e.preventDefault();
 
 			const inputText = this.innerText.trim();
+			const inputSwitch = inputText.toLowerCase();
 
 			if (inputText) {
 				commandHistory.push(inputText);
-				historyIndex = commandHistory.length;
+				historyIndex = rightOrderHistory.length;
 			}
 
-			if (commands.includes(inputText)) {
-				switch (inputText) {
-					case 'clear':
-					case 'cls':
-						new Clear();
-						break;
-					case 'help':
-						new Help({inputText});
-						break;
-				}
-				this.innerText = '';
-			} else {
-				const outputDiv = document.createElement('div');
-				outputDiv.classList.add('output');
-				outputDiv.innerHTML = `<span class="prompt"><span class="white">${inputText}: command not found</span></span>`;
-				this.parentElement.parentElement.insertBefore(outputDiv, this);
-				console.log(this);
-				this.innerText = '';
+			switch (inputSwitch) {
+				case 'clear':
+				case 'cls':
+					new Clear();
+					break;
+				case 'help':
+					new Help({inputText, historyIndex, rightOrderHistory, username});
+					break;
+				case 'info':
+					new Info({inputText, historyIndex, rightOrderHistory, username});
+					break;
+				case 'contact':
+					new Contact({inputText, historyIndex, rightOrderHistory, username});
+					break;
+				// default:
+				// 	new Error({inputText, historyIndex, rightOrderHistory});
+				// 	break;
 			}
+			this.innerText = '';
+
+			const output = document.querySelectorAll('.output');
+			const outputArray = Array.from(output);
+			outputArray.sort((a, b) => {
+				return parseInt(b.id) - parseInt(a.id);
+			});
+			const terminalBody = document.querySelector('.terminal-body');
+			outputArray.forEach(output => terminalBody.prepend(output));
 		}
 	});
 
@@ -59,4 +78,8 @@ document.addEventListener("DOMContentLoaded", () => {
 			}
 		}
 	});
+
+	document.getElementsByClassName("close")[0].addEventListener("click", () => {
+		window.close();
+	})
 });
