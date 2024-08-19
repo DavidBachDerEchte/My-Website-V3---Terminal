@@ -16,6 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	document.getElementsByClassName("terminal-body")[0].addEventListener("click", () => {
 		document.getElementsByClassName("input")[0].focus();
 	})
+	if (!inputElement.hasAttribute('contact')) {
 
 	inputElement.addEventListener('keypress', function (e) {
 
@@ -29,36 +30,36 @@ document.addEventListener("DOMContentLoaded", () => {
 				commandHistory.push(inputText);
 				historyIndex = rightOrderHistory.length;
 			}
+				switch (inputSwitch) {
+					case 'clear':
+					case 'cls':
+						new Clear();
+						break;
+					case 'help':
+						new Help({inputText, historyIndex, rightOrderHistory, username});
+						break;
+					case 'info':
+						new Info({inputText, historyIndex, rightOrderHistory, username});
+						break;
+					case 'contact':
+						new Contact({inputText, historyIndex, rightOrderHistory, username});
+						break;
+					// default:
+					// 	new Error({inputText, historyIndex, rightOrderHistory});
+					// 	break;
+				}
+				this.innerText = '';
 
-			switch (inputSwitch) {
-				case 'clear':
-				case 'cls':
-					new Clear();
-					break;
-				case 'help':
-					new Help({inputText, historyIndex, rightOrderHistory, username});
-					break;
-				case 'info':
-					new Info({inputText, historyIndex, rightOrderHistory, username});
-					break;
-				case 'contact':
-					new Contact({inputText, historyIndex, rightOrderHistory, username});
-					break;
-				// default:
-				// 	new Error({inputText, historyIndex, rightOrderHistory});
-				// 	break;
-			}
-			this.innerText = '';
-
-			const output = document.querySelectorAll('.output');
-			const outputArray = Array.from(output);
-			outputArray.sort((a, b) => {
-				return parseInt(b.id) - parseInt(a.id);
-			});
-			const terminalBody = document.querySelector('.terminal-body');
-			outputArray.forEach(output => terminalBody.prepend(output));
+				const output = document.querySelectorAll('.output');
+				const outputArray = Array.from(output);
+				outputArray.sort((a, b) => {
+					return parseInt(b.id) - parseInt(a.id);
+				});
+				const terminalBody = document.querySelector('.terminal-body');
+				outputArray.forEach(output => terminalBody.prepend(output));
 		}
 	});
+	}
 
 	inputElement.addEventListener('keydown', function (e) {
 		if (e.key === 'ArrowUp') {

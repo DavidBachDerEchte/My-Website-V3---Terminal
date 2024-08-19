@@ -9,10 +9,12 @@
 </head>
 <body>
 <script>
-	window.onload = function() {
+
+	// TODO: Es Funktioniert nur wenn der Browser es zulässt ein Pop-up von dieser URL zu erlauben
+
+	window.onload = function () {
 		window.opener = null;
 		window.open('./terminal.html', '_blank', '');
-		window.location.href = 'https://www.google.com';
 		window.close()
 	};
 </script>
