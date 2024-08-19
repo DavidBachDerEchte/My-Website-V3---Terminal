@@ -39,8 +39,7 @@ app.post('/send-email', (req, res) => {
 	// 	text: message,
 	// };
 
-	res.status(200).send('Email sent! & Recapture wieder hinzufügen' +
-		'');
+	res.status(200).send('Email sent! & Recapture wieder hinzufügen');
 
 	// transporter.sendMail(mailOptions, (error, info) => {
 	// 	if (error) {
