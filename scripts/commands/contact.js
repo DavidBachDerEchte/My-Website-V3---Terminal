@@ -1,5 +1,9 @@
+import { apiServer } from "../config.js";
+
 class Contact {
-	constructor({inputText, historyIndex, rightOrderHistory, username}) {
+	email = '';
+	message = '';
+	constructor({ inputText, historyIndex, rightOrderHistory, username }) {
 		this.inputText = inputText;
 		this.historyIndex = historyIndex;
 		this.rightOrderHistory = rightOrderHistory;
@@ -42,14 +46,16 @@ class Contact {
 					}
 				} else {
 					// When the message is complete
-
-					// TODO: Fetch to Server to send the Email.
-					console.log("Email " + email);
-					console.log("Message " + message);
-
 					input.innerText = '';
 					document.getElementsByClassName("original")[0].firstElementChild.innerHTML = `<span class="prompt">${this.username}@davidbach.eu<span class="white">:</span><span class="blue">~</span><span class="white">$ </span></span>`;
 					input.removeAttribute('contact');
+
+					// Update the class properties
+					this.email = email;
+					this.message = message;
+
+					// Call sendMail
+					this.sendMail(this.email, this.message);
 
 					// Remove event listeners after the message is complete
 					input.removeEventListener('input', handleInput);
@@ -65,6 +71,31 @@ class Contact {
 			input.addEventListener("keypress", handleKeyPress);
 		}
 	}
+
+	sendMail = (email, message) => {
+		fetch(`${apiServer}/send-email`, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({
+				email: email,  // Ensure correct property names
+				message: message,  // Ensure correct property names
+			}),
+		})
+		.then((response) => {
+			if (!response.ok) {
+				throw new Error(`Failed to send email: ${response.statusText}`);
+			}
+			return response.text();
+		})
+		.then((data) => {
+			console.log(data);
+		})
+		.catch((error) => {
+			console.error("Error:", error);
+		});
+	};
 }
 
-export {Contact};
+export { Contact };
