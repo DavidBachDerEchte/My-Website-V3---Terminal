@@ -3,6 +3,7 @@ import { apiServer } from "../config.js";
 class Contact {
 	email = '';
 	message = '';
+	RECAPTCHA_SITE_KEY = "6LeyXAopAAAAAMPTxLkX673Q0qfB3-DhT_Ot0sBB";
 	constructor({ inputText, historyIndex, rightOrderHistory, username }) {
 		this.inputText = inputText;
 		this.historyIndex = historyIndex;
@@ -62,8 +63,14 @@ class Contact {
 					this.email = email;
 					this.message = message;
 
-					// Call sendMail
-					this.sendMail(this.email, this.message);
+					grecaptcha.ready(() => {
+						grecaptcha
+						.execute(this.RECAPTCHA_SITE_KEY, {action: "submit"})
+						.then((token) => {
+							// Call your server with the captcha token
+							this.sendCaptcha(token, this.email, this.message); //, emailInput, messageInput)
+						});
+					});
 
 					// Remove event listeners after the message is complete
 					input.removeEventListener('input', handleInput);
@@ -79,6 +86,41 @@ class Contact {
 			input.addEventListener("keypress", handleKeyPress);
 		}
 	}
+
+	sendCaptcha = (token, emailInput, messageInput) => {
+		fetch(`${apiServer}/recaptcha`, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({
+				token,
+			}),
+		})
+		.then((response) => {
+			if (!response.ok) {
+				throw new Error(`Failed to send CAPTCHA: ${response.statusText}`);
+			}
+			return response.json(); // Assuming the server responds with JSON
+		})
+		.then((data) => {
+			// Handle the server response here
+			if (data.success) {
+				// If the server indicates success, call handleClick
+				this.sendMail(emailInput, messageInput);
+			} else {
+				// Handle other cases as needed
+				throw new Error("CAPTCHA validation failed on the server.", "danger");
+			}
+		})
+		.catch((error) => {
+			console.error("Error:", error);
+			throw new Error(
+				"An error occurred while verifying CAPTCHA. Please try again later.",
+				"danger",
+			);
+		});
+	};
 
 	sendMail = (email, message) => {
 		fetch(`${apiServer}/send-email`, {

@@ -1,3 +1,3 @@
-const apiServer = 'http://localhost:3000';
+const apiServer = 'https://my-websitev3-terminal.ddev.site:3000';
 
 export {apiServer}
