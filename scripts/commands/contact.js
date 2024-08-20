@@ -35,6 +35,10 @@ class Contact {
 						input.innerText = '';
 						nextMessage = true;
 						document.getElementsByClassName("original")[0].firstElementChild.innerHTML = `<span class="prompt">Please enter the Message<span class="white">:</span><span class="blue">~</span><span class="white">$</span></span>`;
+					} else if (email.replace(/\s+/g, '').toLowerCase() === 'exit') {
+						input.removeEventListener('input', handleInput);
+						input.removeEventListener('keypress', handleKeyPress);
+						window.location.href = './terminal.html';
 					} else {
 						const outputDiv = document.createElement('div');
 						outputDiv.classList.add('output');
@@ -44,6 +48,10 @@ class Contact {
 						this.rightOrderHistory.push(outputDiv);
 						input.innerText = '';
 					}
+				} else if (message.replace(/\s+/g, '').toLowerCase() === 'exit') {
+					input.removeEventListener('input', handleInput);
+					input.removeEventListener('keypress', handleKeyPress);
+					window.location.href = './terminal.html';
 				} else {
 					// When the message is complete
 					input.innerText = '';
