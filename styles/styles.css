@@ -11,8 +11,8 @@ body {
 .terminal {
   background-color: #1e1e1e;
   border-radius: 8px;
-  width: 800px;
-  max-width: 90%;
+  width: 90%;
+  max-width: 800px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
@@ -39,30 +39,32 @@ body {
 
 .close {
   background-color: #ff5f57;
-}
-.close:hover {
-  transition: 50ms ease-in-out;
-}
-.close:hover .X {
-  background-color: black;
-  mask-image: url("../../icons/x.svg");
-  mask-repeat: no-repeat;
-  mask-size: 100%;
-  position: relative;
-  top: -3px;
+  cursor: pointer;
   transition: 50ms ease-in-out;
 }
 
-a {
-  color: lightblue;
+.close:hover {
+  background-color: #ff3b30;
 }
 
 .minimize {
   background-color: #ffbd2e;
+  cursor: pointer;
+  transition: 50ms ease-in-out;
+}
+
+.minimize:hover {
+  background-color: #ff9f0a;
 }
 
 .maximize {
   background-color: #28c840;
+  cursor: pointer;
+  transition: 50ms ease-in-out;
+}
+
+.maximize:hover {
+  background-color: #1aab4a;
 }
 
 .title {
@@ -82,9 +84,9 @@ a {
 .terminal-body {
   color: white;
   display: flex;
-  flex-direction: column; /* Change to column-reverse */
-  height: 600px; /* Added height to make the scroll behavior visible */
-  overflow-y: auto; /* Added scroll behavior */
+  flex-direction: column;
+  height: 600px;
+  overflow-y: auto;
 }
 
 .output, .original {
@@ -122,8 +124,38 @@ a {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease-in-out;
 }
+
 .gallery img:hover {
   transform: scale(1.05);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .terminal {
+    width: 95%;
+  }
+  .terminal-body {
+    height: 500px;
+  }
+}
+@media (max-width: 480px) {
+  .terminal {
+    width: 100%;
+  }
+  .terminal-header {
+    padding: 8px;
+  }
+  .buttons span {
+    width: 10px;
+    height: 10px;
+  }
+  .title {
+    font-size: 12px;
+  }
+  .gallery {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    padding: 10px;
+  }
 }
 
 /*# sourceMappingURL=styles.css.map */
