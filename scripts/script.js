@@ -8,12 +8,12 @@ import {Socials} from "./commands/socials.js";
 let commandHistory = [];
 let rightOrderHistory = [];
 let historyIndex = -1;
-const username = 'user';
+const username = 'user@davidbach.dev';
 
 document.addEventListener("DOMContentLoaded", () => {
 	const inputElement = document.querySelector('.input');
 	const prompt = document.getElementsByClassName("prompt-main")[0];
-	prompt.innerHTML = `<span class="prompt prompt-main">${username}@davidbach.eu<span class="white">:</span><span class="blue">~</span><span class="white">$</span></span>`
+	prompt.innerHTML = `<span class="prompt prompt-main">${username}<span class="white">:</span><span class="blue">~</span><span class="white">$</span></span>`
 
 	document.getElementsByClassName("terminal-body")[0].addEventListener("click", () => {
 		document.getElementsByClassName("input")[0].focus();

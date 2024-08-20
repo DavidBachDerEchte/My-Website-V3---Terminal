@@ -13,7 +13,7 @@ class Info {
 		const outputDiv = document.createElement('div');
 		outputDiv.classList.add('output');
 		outputDiv.id = `${this.historyIndex}`;
-		outputDiv.innerHTML = `<span class="prompt">${this.username}@davidbach.eu<span class="white">:</span><span class="blue">~</span><span class="white">$ ${this.inputText}</span></span>`;
+		outputDiv.innerHTML = `<span class="prompt">${this.username}<span class="white">:</span><span class="blue">~</span><span class="white">$ ${this.inputText}</span></span>`;
 		input.parentNode.parentNode.prepend(outputDiv);
 
 		const outputhelp = document.createElement('div');

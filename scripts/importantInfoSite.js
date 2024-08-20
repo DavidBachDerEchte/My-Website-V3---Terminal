@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	const input = document.getElementsByClassName("input")[0];
 	const prompt = document.getElementsByClassName("prompt-tou")[0];
 
-	prompt.innerHTML = `<span class="prompt-tou prompt">${username}@davidbach.eu<span class="white">:</span><span class="blue">~</span><span class="white">$</span></span>`
+	prompt.innerHTML = `<span class="prompt-tou prompt">${username}<span class="white">:</span><span class="blue">~</span><span class="white">$</span></span>`
 
 
 	let message = '';
