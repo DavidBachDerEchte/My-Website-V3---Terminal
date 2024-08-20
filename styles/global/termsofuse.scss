@@ -1,0 +1,12 @@
+.original {
+	align-items: unset;
+	flex-direction: column !important;
+
+	.newprompt {
+		display: flex;
+		padding: 4px;
+		white-space: pre-wrap;
+		align-items: center !important;
+		flex-direction: unset !important;
+	}
+}

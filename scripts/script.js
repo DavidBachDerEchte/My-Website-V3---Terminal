@@ -4,9 +4,7 @@ import {Info} from "./commands/info.js";
 import {Contact} from "./commands/contact.js";
 import {Error} from "./error.js";
 import {Socials} from "./commands/socials.js";
-import {Gallery} from "./commands/gallery.js";
 
-const commands = ['clear', 'cls', 'help', 'info', 'contact', 'socials', 'gallery'];
 let commandHistory = [];
 let rightOrderHistory = [];
 let historyIndex = -1;
@@ -25,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		if (e.key === 'Enter') {
 			e.preventDefault();
 
-			const inputText = this.innerText.trim();
+			const inputText = this.innerText.replace(/\s+/g, '');
 			const inputSwitch = inputText.toLowerCase();
 
 			if (inputText) {
@@ -49,8 +47,8 @@ document.addEventListener("DOMContentLoaded", () => {
 					case 'socials':
 						new Socials({inputText, historyIndex, rightOrderHistory, username});
 						break;
-					case 'gallery':
-						new Gallery({inputText, historyIndex, rightOrderHistory, username});
+					case 'termsofuse':
+						window.location.href = '../terms-of-use.html';
 						break;
 					default:
 						new Error({inputText, historyIndex, rightOrderHistory});

@@ -53,22 +53,6 @@ app.post('/send-email', (req, res) => {
 	// });
 });
 
-app.get('/api/gallery', async (req, res) => {
-	try {
-		// Fetch images from Instagram using an access token (you need to replace this with your access token)
-		const response = await fetch('https://graph.instagram.com/me/media?fields=id,caption,media_url&access_token=YOUR_ACCESS_TOKEN');
-		const data = await response.json();
-
-		// Extract image URLs
-		const images = data.data.map(item => item.media_url);
-
-		res.json(images);
-	} catch (error) {
-		console.error('Error fetching Instagram photos:', error);
-		res.status(500).json({ error: 'Failed to fetch gallery images' });
-	}
-});
-
 app.listen(PORT, () => {
 	console.log(`Server is running on port ${PORT}`);
 });
