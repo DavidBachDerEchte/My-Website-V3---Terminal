@@ -47,7 +47,7 @@ class Contact {
 				} else {
 					// When the message is complete
 					input.innerText = '';
-					document.getElementsByClassName("original")[0].firstElementChild.innerHTML = `<span class="prompt">${this.username}@davidbach.eu<span class="white">:</span><span class="blue">~</span><span class="white">$ </span></span>`;
+					document.getElementsByClassName("original")[0].firstElementChild.innerHTML = `<span class="prompt">${this.username}@davidbach.eu<span class="white">:</span><span class="blue">~</span><span class="white">$</span></span>`;
 					input.removeAttribute('contact');
 
 					// Update the class properties

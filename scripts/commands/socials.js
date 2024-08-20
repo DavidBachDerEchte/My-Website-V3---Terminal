@@ -1,13 +1,13 @@
-class Help {
-	constructor({inputText, historyIndex, rightOrderHistory, username}) {
+class Socials {
+	constructor({ inputText, historyIndex, rightOrderHistory, username }) {
 		this.inputText = inputText;
 		this.historyIndex = historyIndex;
 		this.rightOrderHistory = rightOrderHistory;
 		this.username = username;
-		this.help();
+		this.socials();
 	}
 
-	help() {
+	socials() {
 		const input = document.getElementsByClassName("input")[0];
 
 		const outputDiv = document.createElement('div');
@@ -19,7 +19,7 @@ class Help {
 		const outputhelp = document.createElement('div');
 		outputhelp.classList.add('output');
 		outputhelp.id = `${this.historyIndex + 1}`;
-		outputhelp.innerHTML = `<span class="prompt"><span class="white">${this.inputText}: help <br><br>&#9; Display information about builtin commands. <br><br>&#9;Commands: <br><br>&#9;   clear, cls &#9;&#9; clears the terminal <br><br>&#9;   info &#9;&#9; displays information about the creator of this Website. <br><br>&#9;   contact &#9;&#9; you can send the creator of this website an Email</span></span>`
+		outputhelp.innerHTML = `<span class="prompt"><span class="white">Follow me on <a href="https://www.instagram.com/david_foto_official/" target="_blank">Instagram</a>.</span></span>`
 		input.parentNode.parentNode.prepend(outputhelp);
 		input.innerText = '';
 
@@ -27,5 +27,4 @@ class Help {
 		this.rightOrderHistory.push(outputDiv);
 	}
 }
-
-export {Help}
+export {Socials}

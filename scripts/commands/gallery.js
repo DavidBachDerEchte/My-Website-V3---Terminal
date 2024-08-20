@@ -1,31 +1,44 @@
-class Help {
+class Gallery {
 	constructor({inputText, historyIndex, rightOrderHistory, username}) {
 		this.inputText = inputText;
 		this.historyIndex = historyIndex;
 		this.rightOrderHistory = rightOrderHistory;
 		this.username = username;
-		this.help();
+		this.gallery();
 	}
 
-	help() {
+	async gallery() {
 		const input = document.getElementsByClassName("input")[0];
 
+		// Create output for gallery command
 		const outputDiv = document.createElement('div');
 		outputDiv.classList.add('output');
 		outputDiv.id = `${this.historyIndex}`;
 		outputDiv.innerHTML = `<span class="prompt">${this.username}@davidbach.eu<span class="white">:</span><span class="blue">~</span><span class="white">$ ${this.inputText}</span></span>`;
 		input.parentNode.parentNode.prepend(outputDiv);
 
-		const outputhelp = document.createElement('div');
-		outputhelp.classList.add('output');
-		outputhelp.id = `${this.historyIndex + 1}`;
-		outputhelp.innerHTML = `<span class="prompt"><span class="white">${this.inputText}: help <br><br>&#9; Display information about builtin commands. <br><br>&#9;Commands: <br><br>&#9;   clear, cls &#9;&#9; clears the terminal <br><br>&#9;   info &#9;&#9; displays information about the creator of this Website. <br><br>&#9;   contact &#9;&#9; you can send the creator of this website an Email</span></span>`
-		input.parentNode.parentNode.prepend(outputhelp);
+		// Fetch images from server
+		const response = await fetch('/api/gallery');
+		const images = await response.json();
+
+		// Create gallery container
+		const galleryDiv = document.createElement('div');
+		galleryDiv.classList.add('gallery');
+
+		// Populate gallery with images
+		images.forEach((image, index) => {
+			const imgElement = document.createElement('img');
+			imgElement.src = image;
+			imgElement.alt = `Gallery image ${index + 1}`;
+			galleryDiv.appendChild(imgElement);
+		});
+
+		input.parentNode.parentNode.prepend(galleryDiv);
 		input.innerText = '';
 
-		this.rightOrderHistory.push(outputhelp);
+		this.rightOrderHistory.push(galleryDiv);
 		this.rightOrderHistory.push(outputDiv);
 	}
 }
 
-export {Help}
+export { Gallery };

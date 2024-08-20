@@ -3,8 +3,10 @@ import {Help} from "./commands/help.js";
 import {Info} from "./commands/info.js";
 import {Contact} from "./commands/contact.js";
 import {Error} from "./error.js";
+import {Socials} from "./commands/socials.js";
+import {Gallery} from "./commands/gallery.js";
 
-const commands = ['clear', 'cls', 'help', 'info', 'contact'];
+const commands = ['clear', 'cls', 'help', 'info', 'contact', 'socials', 'gallery'];
 let commandHistory = [];
 let rightOrderHistory = [];
 let historyIndex = -1;
@@ -44,9 +46,15 @@ document.addEventListener("DOMContentLoaded", () => {
 					case 'contact':
 						new Contact({inputText, historyIndex, rightOrderHistory, username});
 						break;
-					// default:
-					// 	new Error({inputText, historyIndex, rightOrderHistory});
-					// 	break;
+					case 'socials':
+						new Socials({inputText, historyIndex, rightOrderHistory, username});
+						break;
+					case 'gallery':
+						new Gallery({inputText, historyIndex, rightOrderHistory, username});
+						break;
+					default:
+						new Error({inputText, historyIndex, rightOrderHistory});
+						break;
 				}
 				this.innerText = '';
 
