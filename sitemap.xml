@@ -14,4 +14,18 @@
         <changefreq>yearly</changefreq>
         <priority>0.5</priority>
     </url>
+
+    <!-- Policy Privacy -->
+    <url>
+        <loc>https://www.davidbach.dev/policy-privacy.html</loc>
+        <changefreq>yearly</changefreq>
+        <priority>0.5</priority>
+    </url>
+
+    <!-- Policy Privacy first visit -->
+    <url>
+        <loc>https://www.davidbach.dev/policy-privacy-first-visit.html</loc>
+        <changefreq>yearly</changefreq>
+        <priority>0.5</priority>
+    </url>
 </urlset>
