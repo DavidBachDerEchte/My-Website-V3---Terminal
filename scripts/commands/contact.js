@@ -39,7 +39,7 @@ class Contact {
 					} else if (email.replace(/\s+/g, '').toLowerCase() === 'exit') {
 						input.removeEventListener('input', handleInput);
 						input.removeEventListener('keypress', handleKeyPress);
-						window.location.href = './terminal.html';
+						window.location.href = './index.html';
 					} else {
 						const outputDiv = document.createElement('div');
 						outputDiv.classList.add('output');
@@ -52,7 +52,7 @@ class Contact {
 				} else if (message.replace(/\s+/g, '').toLowerCase() === 'exit') {
 					input.removeEventListener('input', handleInput);
 					input.removeEventListener('keypress', handleKeyPress);
-					window.location.href = './terminal.html';
+					window.location.href = './index.html';
 				} else {
 					// When the message is complete
 					input.innerText = '';

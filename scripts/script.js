@@ -8,7 +8,7 @@ import {Socials} from "./commands/socials.js";
 let commandHistory = [];
 let rightOrderHistory = [];
 let historyIndex = -1;
-const username = 'user@davidbach.dev';
+const username = `user@${window.location.hostname}`;
 
 document.addEventListener("DOMContentLoaded", () => {
 	const inputElement = document.querySelector('.input');
@@ -18,6 +18,16 @@ document.addEventListener("DOMContentLoaded", () => {
 	document.getElementsByClassName("terminal-body")[0].addEventListener("click", () => {
 		document.getElementsByClassName("input")[0].focus();
 	})
+
+	if (!document.cookie.includes("firstVisit")) {
+		const userResponse = confirm("Welcome to our website!\n\nBy clicking 'OK', you agree that we use Google reCAPTCHA for security purposes and collect cookies to enhance your experience. You also accept that you can send us a contact request via email using the 'contact' command. Your information will not be stored; we will only receive an email with your message.\n\nTo see a list of available commands, type 'help'.\n\nDo you accept the terms?");
+
+		if (userResponse) {
+			document.cookie = "firstVisit=true,expires=Fri, 31 Dec 9999 23:59:59 GMT";
+		} else {
+			window.location.href = 'https://www.google.com';
+		}
+	}
 
 	inputElement.addEventListener('keypress', function (e) {
 
@@ -89,10 +99,6 @@ document.addEventListener("DOMContentLoaded", () => {
 			}
 		}
 	});
-
-	document.getElementsByClassName("close")[0].addEventListener("click", () => {
-		window.close();
-	})
 });
 
 export {username};

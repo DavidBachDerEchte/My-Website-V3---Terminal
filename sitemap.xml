@@ -3,8 +3,15 @@
 
     <!-- Startseite -->
     <url>
-       <loc>https://www.davidbach.eu/</loc>
-        <changefreq>monthly</changefreq>
+        <loc>https://www.davidbach.dev/</loc>
+        <changefreq>yearly</changefreq>
         <priority>1.0</priority>
+    </url>
+
+    <!-- Terms of Use -->
+    <url>
+        <loc>https://www.davidbach.dev/terms-of-use.html</loc>
+        <changefreq>yearly</changefreq>
+        <priority>0.5</priority>
     </url>
 </urlset>

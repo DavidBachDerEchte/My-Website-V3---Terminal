@@ -37,40 +37,33 @@ body {
   border-radius: 50%;
 }
 
-.close {
-  background-color: #ff5f57;
-  cursor: pointer;
-  transition: 50ms ease-in-out;
+a {
+  color: dodgerblue;
 }
 
-.close:hover {
-  background-color: #ff3b30;
+.close {
+  background-color: #ff5f57;
+  cursor: default;
+  transition: 50ms ease-in-out;
 }
 
 .minimize {
   background-color: #ffbd2e;
-  cursor: pointer;
+  cursor: default;
   transition: 50ms ease-in-out;
-}
-
-.minimize:hover {
-  background-color: #ff9f0a;
 }
 
 .maximize {
   background-color: #28c840;
-  cursor: pointer;
+  cursor: default;
   transition: 50ms ease-in-out;
-}
-
-.maximize:hover {
-  background-color: #1aab4a;
 }
 
 .title {
   margin-left: auto;
   color: white;
   font-size: 14px;
+  cursor: default;
 }
 
 .white {
@@ -87,6 +80,7 @@ body {
   flex-direction: column;
   height: 600px;
   overflow-y: auto;
+  cursor: text;
 }
 
 .output, .original {
