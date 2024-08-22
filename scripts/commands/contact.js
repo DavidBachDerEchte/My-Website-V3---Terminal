@@ -140,7 +140,14 @@ class Contact {
 			return response.text();
 		})
 		.then((data) => {
-			console.log(data);
+			const input = document.getElementsByClassName("input")[0];
+			const outputDiv2 = document.createElement('div');
+			outputDiv2.classList.add('output');
+			outputDiv2.id = `${this.historyIndex}`;
+			outputDiv2.innerHTML = `<span class="prompt"><span class="white">${data}</span></span>`;
+			input.parentNode.parentNode.prepend(outputDiv2);
+			this.rightOrderHistory.push(outputDiv2);
+			input.innerText = '';
 		})
 		.catch((error) => {
 			console.error("Error:", error);

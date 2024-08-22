@@ -18,7 +18,6 @@ document.addEventListener("DOMContentLoaded", () => {
 	document.getElementsByClassName("terminal-body")[0].addEventListener("click", () => {
 		document.getElementsByClassName("input")[0].focus();
 	})
-	if (!inputElement.hasAttribute('contact')) {
 
 	inputElement.addEventListener('keypress', function (e) {
 
@@ -32,6 +31,8 @@ document.addEventListener("DOMContentLoaded", () => {
 				commandHistory.push(inputText);
 				historyIndex = rightOrderHistory.length;
 			}
+			if (!inputElement.hasAttribute('contact')) {
+
 				switch (inputSwitch) {
 					case 'clear':
 					case 'cls':
@@ -57,17 +58,18 @@ document.addEventListener("DOMContentLoaded", () => {
 						break;
 				}
 				this.innerText = '';
+			}
 
-				const output = document.querySelectorAll('.output');
-				const outputArray = Array.from(output);
-				outputArray.sort((a, b) => {
-					return parseInt(b.id) - parseInt(a.id);
-				});
-				const terminalBody = document.querySelector('.terminal-body');
-				outputArray.forEach(output => terminalBody.prepend(output));
+			const output = document.querySelectorAll('.output');
+			const outputArray = Array.from(output);
+			outputArray.sort((a, b) => {
+				return parseInt(b.id) - parseInt(a.id);
+			});
+			const terminalBody = document.querySelector('.terminal-body');
+			outputArray.forEach(output => terminalBody.prepend(output));
 		}
+
 	});
-	}
 
 	inputElement.addEventListener('keydown', function (e) {
 		if (e.key === 'ArrowUp') {
